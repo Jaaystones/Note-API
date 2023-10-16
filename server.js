@@ -1,10 +1,14 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from "dotenv";
+import cors from "cors";
+import cookieParser from 'cookie-parser';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { mongoDb }  from './config/dbConfig.js';
-import router from './routes/root.js';  
+import router from './routes/root.js';
+import { logger } from './middleware/logger.js';
+import errorHandler from './middleware/errorHandling.js';  
 
 
 // Extracts the file name path and directory name
@@ -18,6 +22,12 @@ const PORT = process.env.PORT || 7000;
 
 //connect to DB
 mongoDb();
+
+//middlewares
+app.use(logger);
+app.use(cookieParser()); 
+app.use(express.json());
+app.use(cors());
 
 app.use('/', express.static(path.join(__dirname, '/public')))
 
@@ -33,6 +43,8 @@ app.all('*', (req, res) => {
         res.type('txt').send('404 Not Found')
     }
 })
+
+app.use(errorHandler);
 
 //Start the server
 mongoose.connection.once( "open", ()=> {
