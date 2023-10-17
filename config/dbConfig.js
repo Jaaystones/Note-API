@@ -1,8 +1,6 @@
 import mongoose from 'mongoose';
-import dotenv from 'dotenv';
 import asyncHandler from 'express-async-handler';
 
-dotenv.config();
 
 export const mongoDb = asyncHandler(async () => {
   try {
