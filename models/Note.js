@@ -24,8 +24,10 @@ const noteSchema = new mongoose.Schema({
 { timestamps: true },
 
 );
+// create the mongoose instance for autoincremental
+const AutoIncrementInstance = AutoIncrement(mongoose);
 
-noteSchema.plugin(AutoIncrement, {
+noteSchema.plugin(AutoIncrementInstance, {
     inc_field: "ticket",
     id: "ticketNums",
     start_seq: 100

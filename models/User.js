@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import bcrypt from 'bcrypt';
 
 const userSchema = new mongoose.Schema({
     username: {
@@ -18,7 +19,9 @@ const userSchema = new mongoose.Schema({
         type: Boolean,
         default: true
     },
-});
+},
+{ timestamps: true },
+);
 
 // encrypt password every time you access it before saving it to dB
 userSchema.pre('save', async function (next) {
