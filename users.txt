@@ -8,3 +8,8 @@
 	"password":"James11",
 	"roles":["Employee"]
 }
+{
+	"username":"Sammywens",
+	"password":"Sammywens",
+	"roles":["Manager"]
+}

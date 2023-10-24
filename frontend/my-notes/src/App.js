@@ -1,15 +1,16 @@
 import { Routes, Route } from 'react-router-dom'
 import Layout from './components/Layout'
 import Public from './components/Public'
-import Login from './features/auth/Login';
+import Login from './features/auth/Login'
 import DashLayout from './components/DashLayout'
 import Welcome from './features/auth/Welcome'
 import NotesList from './features/notes/NotesList'
 import UsersList from './features/users/UsersList'
 import EditUser from './features/users/editUser'
-import editNote from './features/notes/editNote'
 import NewUserForm from './features/users/newUserForm'
-import newNote from './features/notes/newNote'
+import EditNote from './features/notes/editNote'
+import NewNote from './features/notes/newNote'
+import Prefetch from './features/auth/Prefetch'
 
 function App() {
   return (
@@ -18,26 +19,28 @@ function App() {
         <Route index element={<Public />} />
         <Route path="login" element={<Login />} />
 
-        <Route path="dash" element={<DashLayout />}>
+        <Route element={<Prefetch />}>
+          <Route path="dash" element={<DashLayout />}>
 
-          <Route index element={<Welcome />} />
+            <Route index element={<Welcome />} />
 
-          <Route path="users">
-            <Route index element={<UsersList />} />
-            <Route path=":id" element={<EditUser />} />
-            <Route path="new" element={<NewUserForm />} />
-          </Route>
+            <Route path="users">
+              <Route index element={<UsersList />} />
+              <Route path=":id" element={<EditUser />} />
+              <Route path="new" element={<NewUserForm />} />
+            </Route>
 
-          <Route path="notes">
-            <Route index element={<NotesList />} />
-            <Route path=":id" element={<editNote />} />
-            <Route path="new" element={<newNote />} />
-          </Route>
+            <Route path="notes">
+              <Route index element={<NotesList />} />
+              <Route path=":id" element={<EditNote />} />
+              <Route path="new" element={<NewNote />} />
+            </Route>
 
-        </Route>{/* End Dash */}
+          </Route>{/* End Dash */}
+        </Route>
 
       </Route>
-    </Routes> 
+    </Routes>
   );
 }
 
