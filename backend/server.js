@@ -9,6 +9,7 @@ import { mongoDb }  from './config/dbConfig.js';
 import router from './routes/root.js';
 import userRoutes from './routes/userRoutes.js';
 import noteRoutes from './routes/noteRoutes.js';
+import authRoutes from './routes/authRoutes.js';
 import { logger, logEvents } from './middleware/logger.js';
 import errorHandler from './middleware/errorHandling.js';
 import corsOptions from './config/corsOptions.js';  
@@ -37,6 +38,7 @@ app.use('/', express.static(path.join(__dirname, '/public')));
 
 app.use('/', router);
 app.use('/users', userRoutes);
+app.use('/auth', authRoutes);
 app.use('/notes', noteRoutes);
 
 app.all('*', (req, res) => {
