@@ -13,3 +13,9 @@
 	"password":"Sammywens",
 	"roles":["Manager"]
 }
+
+after authentication
+{
+	"username":"Paul123",
+	"password":"jogolo"
+}
