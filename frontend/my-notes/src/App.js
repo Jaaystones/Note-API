@@ -11,6 +11,7 @@ import NewUserForm from './features/users/newUserForm'
 import EditNote from './features/notes/editNote'
 import NewNote from './features/notes/newNote'
 import Prefetch from './features/auth/Prefetch'
+import PersistLogin from './features/auth/PersistLogin'
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route index element={<Public />} />
         <Route path="login" element={<Login />} />
 
+        <Route element={<PersistLogin />}>
         <Route element={<Prefetch />}>
           <Route path="dash" element={<DashLayout />}>
 
@@ -38,6 +40,7 @@ function App() {
 
           </Route>{/* End Dash */}
         </Route>
+      </Route>
 
       </Route>
     </Routes>
