@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import bcrypt from 'bcrypt';
+// import bcrypt from 'bcrypt';
 
 const userSchema = new mongoose.Schema({
     username: {
@@ -11,10 +11,10 @@ const userSchema = new mongoose.Schema({
         required:[true, "Please enter a valid password"],
         minLength:[6, "Password must not be less than 6 characters"]
     },
-    roles: [{
-        type: String,
-        default: "Employee"  
-    }],
+    roles: {
+        type: [String],
+        default: ["Employee"]  
+    },
     active: {
         type: Boolean,
         default: true
