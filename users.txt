@@ -16,6 +16,22 @@
 
 after authentication
 {
+	"username":"JayStone",
+	"password":"jogolo",
+	"roles":["Manager"]
+}
+{
 	"username":"Paul123",
 	"password":"jogolo"
+	"roles":["Admin"]
+}
+{
+	"username":"TeeJay",
+	"password":"Teeboy",
+	"roles":["Employee"]
+}
+{
+	"username":"SammyWens",
+	"password":"Sammywens",
+	"roles":["Admin"]
 }

@@ -1,6 +1,5 @@
 import { useGetUsersQuery } from "./usersApiSlice"
-import User from './User';
-
+import User from './User'
 
 const UsersList = () => {
 
@@ -11,10 +10,10 @@ const UsersList = () => {
         isError,
         error
     } = useGetUsersQuery('usersList', {
-        pollingInterval: 60000, //60sec
-        refetchOnFocus: true, // refetch after leaving browser window
+        pollingInterval: 60000,
+        refetchOnFocus: true,
         refetchOnMountOrArgChange: true
-    }) 
+    })
 
     let content
 
@@ -28,9 +27,7 @@ const UsersList = () => {
 
         const { ids } = users
 
-        const tableContent = ids?.length
-            ? ids.map(userId => <User key={userId} userId={userId} />)
-            : null
+        const tableContent = ids?.length && ids.map(userId => <User key={userId} userId={userId} />)
 
         content = (
             <table className="table table--users">
