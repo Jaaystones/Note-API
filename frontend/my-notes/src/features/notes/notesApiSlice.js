@@ -5,7 +5,6 @@ import {
 import { apiSlice } from "../../app/api/apiSlice"
 
 const notesAdapter = createEntityAdapter({
-    //optional chaning to set all completed tasks to be below the list.
     sortComparer: (a, b) => (a.completed === b.completed) ? 0 : a.completed ? 1 : -1
 })
 
@@ -14,10 +13,12 @@ const initialState = notesAdapter.getInitialState()
 export const notesApiSlice = apiSlice.injectEndpoints({
     endpoints: builder => ({
         getNotes: builder.query({
-            query: () => '/notes',
-            validateStatus: (response, result) => {
-                return response.status === 200 && !result.isError
-            },
+            query: () => ({
+                url: '/notes',
+                validateStatus: (response, result) => {
+                    return response.status === 200 && !result.isError
+                },
+            }),
             transformResponse: responseData => {
                 const loadedNotes = responseData.map(note => {
                     note.id = note._id
@@ -36,7 +37,7 @@ export const notesApiSlice = apiSlice.injectEndpoints({
         }),
         addNewNote: builder.mutation({
             query: initialNote => ({
-                url: '/notes',
+                url: '/notes/create',
                 method: 'POST',
                 body: {
                     ...initialNote,
@@ -48,7 +49,7 @@ export const notesApiSlice = apiSlice.injectEndpoints({
         }),
         updateNote: builder.mutation({
             query: initialNote => ({
-                url: '/notes',
+                url: '/notes/update',
                 method: 'PATCH',
                 body: {
                     ...initialNote,
@@ -60,7 +61,7 @@ export const notesApiSlice = apiSlice.injectEndpoints({
         }),
         deleteNote: builder.mutation({
             query: ({ id }) => ({
-                url: `/notes`,
+                url: `/notes/delete`,
                 method: 'DELETE',
                 body: { id }
             }),
